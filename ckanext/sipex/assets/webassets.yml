@@ -1,0 +1,14 @@
+# sipex-js:
+#   filter: rjsmin
+#   output: ckanext-sipex/%(version)s-sipex.js
+#   contents:
+#     - js/sipex.js
+#   extra:
+#     preload:
+#       - base/main
+
+# sipex-css:
+#   filter: cssrewrite
+#   output: ckanext-sipex/%(version)s-sipex.css
+#   contents:
+#     - css/sipex.css
