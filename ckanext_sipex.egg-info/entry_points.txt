@@ -1,0 +1,2 @@
+[ckan.plugins]
+sipex = ckanext.sipex.plugin:SipexPlugin
