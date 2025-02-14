@@ -1,0 +1,134 @@
+{% ckan_extends %}
+
+{% set dataset_type = h.default_package_type() %}
+
+{% block header_wrapper %} 
+{% block header_account %}
+<div class="account-masthead">
+  <div class="container">
+    {% block header_account_container_content %} {% if c.userobj %}
+    <div class="account avatar authed" data-module="me" data-me="{{ c.userobj.id }}">
+      <ul class="list-unstyled">
+        {% block header_account_logged %} {% if c.userobj.sysadmin %}
+        <li>
+          <a href="{{ h.url_for('admin.index') }}" title="{{ _('Sysadmin settings') }}">
+            <i class="fa fa-gavel" aria-hidden="true"></i>
+            <span class="text">{{ _('Admin') }}</span>
+          </a>
+        </li>
+        {% endif %}
+        {% block header_account_profile %}
+        <li>
+          <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+            {{ h.user_image((c.user if c and c.user else ''), size=22) }}
+            <span class="username">{{ c.userobj.display_name }}</span>
+          </a>
+        </li>
+        {% endblock %}
+        {% block header_dashboard %}
+          <li>
+            <a href="{{ h.url_for('dashboard.datasets') }}" title="{{ _("View dashboard") }}">
+              <i class="fa fa-tachometer" aria-hidden="true"></i>
+              <span class="text">{{ _('Dashboard') }}</span>
+            </a>
+          </li>
+        {% endblock %}
+        {% block header_account_settings_link %}
+        <li>
+          <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Profile settings') }}">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <span class="text">{{ _('Profile settings') }}</span>
+          </a>
+        </li>
+        {% endblock %} {% block header_account_log_out_link %}
+        <li>
+          <form action="{{ h.url_for('user.logout') }}" method="post">
+            {{ h.csrf_input() }}
+            <button class="btn btn-link" type="submit" title="{{ _('Log out') }}">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+            </button>
+          </form>
+        </li>
+        {% endblock %} {% endblock %}
+      </ul>
+    </div>
+    {% else %}
+    <nav class="account not-authed" aria-label="{{ _('Account') }}">
+      <ul class="list-unstyled">
+        {% block header_account_notlogged %}
+        <li>{% link_for _('Log in'), named_route='user.login' %}</li>
+        {% if h.check_access('user_create') %}
+        <li>{% link_for _('Register'), named_route='user.register', class_='sub' %}</li>
+        {% endif %} {% endblock %}
+      </ul>
+    </nav>
+    {% endif %} {% endblock %}
+  </div>
+</div>
+{% endblock %}
+
+<header class="masthead">
+  <div class="container">
+    {% block header_debug %} {% if g.debug and not g.debug_supress_header %}
+    <div class="debug">Blueprint : {{ g.blueprint }}<br />View : {{ g.view }}</div>
+    {% endif %} {% endblock %}
+
+    <div class="header-brand-row">
+      <div class="logos">
+        {% block header_logo %}
+        <div class="main-logo">
+          {% if g.site_logo %}
+          <a class="logo" href="https://sipexchangebc.com/">
+            <img src="{{ h.url_for_static('images/sipex-logo.png') }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" />
+          </a>
+          {% else %}
+          <h1><a href="https://sipexchangebc.com/">SIPex</a></h1>
+          {% if g.site_description %}
+          <h2>{{ g.site_description }}</h2>
+          {% endif %}
+          {% endif %}
+        </div>
+        {% endblock %}
+
+        <div class="partner-logos">
+          <img src="{{ h.url_for_static('images/sip-logo.png') }}" alt="Silviculture Innovation Program" href="https://sip.bvcentre.ca/">
+          <img src="{{ h.url_for_static('images/bvrc-logo.png') }}" alt="Bulkley Valley Research Centre" href="https://bvcentre.ca/">
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation-toggle"
+        aria-controls="main-navigation-toggle" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
+        <span class="fa fa-bars"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="main-navigation-toggle">
+        <ul class="navbar-nav">
+          {% block header_site_navigation_tabs %}
+            <li class="nav-item">
+              <a class="nav-link" href="https://sipexchangebc.com/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://sipexchangebc.com/community/">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://sipexchangebc.com/capacity/">Building Capacity</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="informationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Information Repository
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="informationDropdown">
+                <li><a class="dropdown-item" href="{{ h.url_for('home.index') }}">Explore Data</a></li>
+                <li><a class="dropdown-item" href="{{ h.url_for('organization.index') }}">Organizations</a></li>
+                <li><a class="dropdown-item" href="{{ h.url_for('group.index') }}">Groups</a></li>
+              </ul>
+            </li>
+          {% endblock %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+{% endblock %}

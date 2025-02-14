@@ -10,10 +10,17 @@ ckanext/sipex/__init__.py
 ckanext/sipex/plugin.py
 ckanext/sipex/assets/script.js
 ckanext/sipex/assets/webassets.yml
+ckanext/sipex/public/.DS_Store
 ckanext/sipex/public/.gitignore
 ckanext/sipex/public/style.css
+ckanext/sipex/public/images/bvrc-logo.png
+ckanext/sipex/public/images/sip-logo.png
+ckanext/sipex/public/images/sipex-logo.png
+ckanext/sipex/public/images/sipex_logo_transparent-lg.png
 ckanext/sipex/public/images/sisco9-scaled.jpg
 ckanext/sipex/templates/base.html
+ckanext/sipex/templates/footer.html
+ckanext/sipex/templates/header.html
 ckanext/sipex/templates/page.html
 ckanext/sipex/templates/home/index.html
 ckanext/sipex/templates/home/snippets/search.html
