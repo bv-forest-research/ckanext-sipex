@@ -14,6 +14,7 @@ ckanext/sipex/public/.DS_Store
 ckanext/sipex/public/.gitignore
 ckanext/sipex/public/style.css
 ckanext/sipex/public/images/bvrc-logo.png
+ckanext/sipex/public/images/sip-favicon.png
 ckanext/sipex/public/images/sip-logo.png
 ckanext/sipex/public/images/sipex-logo.png
 ckanext/sipex/public/images/sipex_logo_transparent-lg.png
