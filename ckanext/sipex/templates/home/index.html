@@ -1,19 +1,88 @@
 {% ckan_extends %}
+
 {% block primary_content %}
     <div role="main" class="hero">
-    <div class="overlay"></div>
-        <div class="hero">
-            <div class="header-text">
-                <div class="col-md-12">
-                    <div class="container">
-                      <h1>SIP exchange</h1>
-                      <p>Advancing Silviculture with Accessible Knowledge and Collaboration</p>
-                      {% block search %}
-                      {% snippet 'home/snippets/search.html' %}
-                      {% endblock %}
-                    </div>
+        <div class="overlay"></div>
+        <div class="header-text">
+            <div class="col-md-12">
+                <div class="container">
+                    <h1>SIP exchange</h1>
+                    <p>Advancing Silviculture with Accessible Knowledge and Collaboration</p>
+                    {% block search %}
+                    {% snippet 'home/snippets/search.html' %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
-  </div>
+    </div>
+
+    <div class="categories-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Categories</h2>
+            <div class="row justify-content-center">
+                <a href="/datasets/planting" class="col-md-4 category-item">
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fa fa-seedling"></i>
+                        </div>
+                        <h3>Planting</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris vivamus hendrerit arcu sed erat molestie vehicula sem ultricies.</p>
+                    </div>
+                </a>
+                <a href="/datasets/prescribed-burning" class="col-md-4 category-item">
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fa fa-fire"></i>
+                        </div>
+                        <h3>Prescribed Burning</h3>
+                        <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim phasellus molestie magna non est bibendum venenatis.</p>
+                    </div>
+                </a>
+                <a href="/datasets/monitoring" class="col-md-4 category-item">
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fa fa-chart-line"></i>
+                        </div>
+                        <h3>Monitoring</h3>
+                        <p>Praesent dapibus neque id cursus faucibus tortor neque egestas augue eu vulputate magna eros eu erat aliquam erat volutpat nam dui.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="recent-datasets-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Recent Datasets</h2>
+            <div class="row">
+                {% set recent_datasets = h.get_recent_datasets(limit=3) %}
+                {% for dataset in recent_datasets %}
+                    <div class="col-md-4 mb-4">
+                        <div class="dataset-card">
+                            <div class="dataset-content">
+                                <h3>{{ dataset.title or dataset.name }}</h3>
+                                <p class="dataset-description">{{ h.markdown_extract(dataset.notes, extract_length=120) }}</p>
+                                <div class="dataset-meta">
+                                    <span class="dataset-date">
+                                        <i class="fa fa-calendar-alt"></i>
+                                        {{ h.render_datetime(dataset.metadata_created, '%B %d, %Y') }}
+                                    </span>
+                                    {% if dataset.organization %}
+                                        <span class="dataset-org">
+                                            <i class="fa fa-building"></i>
+                                            {{ dataset.organization.title or dataset.organization.name }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                <a href="{{ h.url_for('dataset.read', id=dataset.name) }}" class="dataset-link">View Dataset</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ h.url_for('dataset.search') }}" class="view-all-link">View All Datasets</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

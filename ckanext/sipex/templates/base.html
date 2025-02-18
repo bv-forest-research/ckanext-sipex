@@ -3,15 +3,23 @@
 {% block styles %}
   {{ super() }}
   <link rel="stylesheet" href="{{ h.url_for_static('style.css') }}" />
-  <!-- Google tag (gtag.js) -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGL4GFRVY7"></script>
+  <link rel="icon" href="/images/sip-favicon.png" type="image/png" />
+  <link rel="shortcut icon" href="/images/sip-favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/images/sip-favicon.png" />
+  
+  <!-- FontAwesome via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Google Analytics (commented out) -->
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGL4GFRVY7"></script>
   <script>
-    
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-NGL4GFRVY7');
-  </script> -->
+  </script>
+  -->
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}

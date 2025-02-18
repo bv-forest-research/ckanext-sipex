@@ -17,7 +17,7 @@ body {
 
 p{
   font-size: 1.125rem !important;
-    line-height: 1.5 !important;
+  line-height: 1.5 !important;
 }
 
 .main{
@@ -32,6 +32,17 @@ p{
 
 .module-heading{
   background: #fff !important;
+}
+
+.btn-primary{
+  background-color: #07302c !important;
+  color: white !important;
+}
+
+.module-narrow .nav-item.active > a, .module-narrow .nav-aside li.active a {
+  position: relative;
+  background-color: #07302c !important;
+  color: white !important;
 }
 
 /* header */
@@ -149,7 +160,7 @@ header.masthead {
 
 .navbar-nav .active .nav-link,
 .navbar-nav .nav-link:hover {
-  color: #ffd700 !important;
+  color: #e8aa00 !important;
 }
 
 /* Site search */
@@ -178,15 +189,6 @@ header.masthead {
 
 .site-search input::placeholder {
   color: rgba(255, 255, 255, 0.7);
-}
-
-/* Fix search contrast */
-
-.form-control:focus {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  box-shadow: none !important;
-  color: white !important;
 }
 
 /* Responsive styles */
@@ -269,7 +271,7 @@ header.masthead {
 
 .navbar .dropdown-menu a:hover {
   background-color: #002a26 !important;
-  color: #ffd700 !important;
+  color: #e8aa00 !important;
 }
 
 .navbar .dropdown-toggle::after {
@@ -404,7 +406,7 @@ header.masthead {
 }
 
 .sipex-footer h4 {
-  color: #ffd700;
+  color: #e8aa00;
   margin-bottom: 1rem;
   text-transform: uppercase;
   font-size: 1rem;
@@ -419,14 +421,19 @@ header.masthead {
   color: white;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-size: 0.875rem;
 }
 
 .sipex-footer ul li a:hover {
-  color: #ffd700;
+  color: #e8aa00;
 }
 
 .sipex-footer .footer-contact {
   line-height: 1.6;
+}
+
+.sipex-footer .footer-contact p, .footer-bottom p{
+  font-size: 0.875rem !important;
 }
 
 .sipex-footer .social-links {
@@ -441,7 +448,7 @@ header.masthead {
 }
 
 .sipex-footer .social-links a:hover {
-  color: #ffd700;
+  color: #e8aa00;
 }
 
 .sipex-footer .footer-bottom {
@@ -450,6 +457,12 @@ header.masthead {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 1rem;
   font-size: 0.9rem;
+  position: relative;
+}
+
+.sipex-footer .row {
+  align-items: flex-start !important;
+  display: flex !important;
 }
 
 @media (max-width: 768px) {
@@ -463,4 +476,213 @@ header.masthead {
   .sipex-footer .footer-contact {
     margin-bottom: 2rem;
   }
+}
+
+
+/* categories section */
+
+.categories-section {
+  background-color: #f4f4f4;
+  padding: 4rem 0;
+}
+
+.categories-section h2, .recent-datasets-section h2 {
+  color: #002a26;
+  margin-bottom: 2rem;
+  font-family: Raleway, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.category-item {
+  padding: 1.5rem;
+  text-decoration: none;
+  display: block;
+}
+
+.category-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,42,38,0.1) 0%, rgba(9,50,46,0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-item:hover .category-content {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.category-item:hover .category-content::before {
+  opacity: 1;
+}
+
+.category-icon {
+  font-size: 3rem;
+  color: #07302c;
+  margin-bottom: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.category-item:hover .category-icon {
+  transform: scale(1.1);
+  color: #e8aa00;
+  
+}
+
+.category-item h3 {
+  color: #09322e;
+  margin-bottom: 1rem;
+  font-family: Raleway, sans-serif;
+  position: relative;
+}
+
+.category-item p {
+  color: #333;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  position: relative;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Recent Datasets Section */
+.recent-datasets-section {
+  padding: 4rem 0;
+  background-color: #ffffff;
+}
+
+.dataset-card {
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.dataset-content {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(7, 48, 44, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dataset-card:hover .dataset-content {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(7, 48, 44, 0.15);
+}
+
+.dataset-content h3 {
+  color: #07302c;
+  font-family: Raleway, sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.dataset-description {
+  color: #4a4a4a;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dataset-meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dataset-meta span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dataset-meta i {
+  margin-right: 0.5rem;
+  color: #07302c;
+}
+
+.dataset-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #07302c;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.dataset-link:hover, .btn-primary:hover {
+  background-color: #e8aa00 !important;
+  color: #07302c !important;
+  text-decoration: none !important;
+}
+
+.view-all-link {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  border: 2px solid #07302c;
+  color: #07302c;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.view-all-link:hover {
+  background-color: #07302c;
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .category-item {
+      margin-bottom: 1rem;
+  }
+  
+  .category-content {
+      padding: 1.5rem;
+  }
+
+  .dataset-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+  }
+}
+
+/* pages and forms */
+
+.form-actions .btn {
+  margin-bottom: .875rem !important;
 }
