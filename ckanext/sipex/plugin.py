@@ -18,9 +18,8 @@ class SipexPlugin(plugins.SingletonPlugin):
     """SIPEX plugin."""
 
     plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.ITemplateHelpers)  # Add this line
-
-    # Your existing methods stay here
+    plugins.implements(plugins.ITemplateHelpers)  
+    
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')

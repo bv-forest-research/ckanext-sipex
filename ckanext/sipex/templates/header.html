@@ -115,7 +115,11 @@
             <li class="nav-item">
               <a class="nav-link" href="https://sipexchangebc.com/capacity/">Building Capacity</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ h.url_for('home.index') }}">Explore Resources</a>
+            </li>
+            <!-- Dropdown Menu -->
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="informationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Information Repository
               </a>
@@ -124,7 +128,7 @@
                 <li><a class="dropdown-item" href="{{ h.url_for('organization.index') }}">Organizations</a></li>
                 <li><a class="dropdown-item" href="{{ h.url_for('group.index') }}">Categories</a></li>
               </ul>
-            </li>
+            </li> -->
           {% endblock %}
         </ul>
       </div>
