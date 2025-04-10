@@ -52,19 +52,22 @@
                 </a>
                 <a href="/group/stand-interventions" class="category-card">
                     <div class="category-icon">
-                        <i class="fa fa-leaf"></i>
+                        <img src="/images/stand-tending.png" alt="Stand Interventions" class="category-image default-image">
+                        <img src="/images/stand-tending-h.png" alt="Stand Interventions" class="category-image hover-image">
                     </div>
                     <h3>Stand Interventions</h3>
                 </a>
                 <a href="/group/fuel-management" class="category-card">
                     <div class="category-icon">
-                        <i class="fa fa-tools"></i>
+                        <img src="/images/fuel-manage.png" alt="Fuel Management" class="category-image default-image">
+                        <img src="/images/fuel-manage-h.png" alt="Fuel Management" class="category-image hover-image">
                     </div>
                     <h3>Fuel Management</h3>
                 </a>
                 <a href="/group/forest-products" class="category-card">
                     <div class="category-icon">
-                        <i class="fa fa-boxes"></i>
+                        <img src="/images/forest-products.png" alt="Fuel Management" class="category-image default-image">
+                        <img src="/images/forest-products-h.png" alt="Fuel Management" class="category-image hover-image">
                     </div>
                     <h3>Forest Products</h3>
                 </a>
@@ -78,9 +81,33 @@
         </div>
     </div>
 
+
+    <div class="grow-banner-container">
+        <!-- Share Resource Section (Left) -->
+        <div class="banner-section resource-section">
+            <div class="icon resource-icon">
+                <img src="/images/resource-icon.png" alt="Book Icon">
+            </div>
+            <h2 class="banner-heading">Looking to Share a Relevant Resource?</h2>
+            <p class="banner-description">Do you have a resource that could support others working in silviculture? Help grow our knowledge hub!</p>
+            <a href="https://sipexchangebc.com/resource-suggestion-form/" class="learn-more-btn">Learn More</a>
+        </div>
+        
+        <!-- Help Section (Right) -->
+        <div class="banner-section help-section">
+            <div class="icon help-icon">
+                <img src="/images/help-icon.png" alt="Help Icon">
+            </div>
+            <h2 class="banner-heading">Need Help With a Silviculture Problem?</h2>
+            <p class="banner-description">Can't find what you need or need deeper insight into your silviculture challenge? Connect with our extensions team!</p>
+            <a href="https://sipexchangebc.com/need-help-with-a-silviculture-problem/" class="learn-more-btn">Learn More</a>
+        </div>
+    </div>
+
+
     <div class="recent-datasets-section">
         <div class="container">
-            <h2 class="text-center mb-4">Recent Datasets</h2>
+            <h2 class="text-center section-title">Recent Resources</h2>
             <div class="row">
                 {% set recent_datasets = h.get_recent_datasets(limit=3) %}
                 {% for dataset in recent_datasets %}
@@ -101,14 +128,14 @@
                                         </span>
                                     {% endif %}
                                 </div>
-                                <a href="{{ h.url_for('dataset.read', id=dataset.name) }}" class="dataset-link">View Dataset</a>
+                                <a href="{{ h.url_for('dataset.read', id=dataset.name) }}" class="dataset-link">View Resource</a>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="text-center mt-4">
-                <a href="{{ h.url_for('dataset.search') }}" class="view-all-link">View All Datasets</a>
+                <a href="{{ h.url_for('dataset.search') }}" class="view-all-link">View All Resources</a>
             </div>
         </div>
     </div>

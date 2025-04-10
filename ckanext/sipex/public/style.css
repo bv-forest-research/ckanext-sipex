@@ -52,6 +52,11 @@ p{
   text-transform: uppercase;
   font-family: Raleway !important;
   margin-bottom: 0 !important;
+  display: none; /* Default to hidden */
+}
+
+body.user-is-logged-in .account-masthead {
+  display: block; /* Only show when user is logged in */
 }
 
 .account-masthead ul, 
@@ -75,8 +80,7 @@ header.masthead {
 }
 
 .masthead ul, 
-.masthead li, 
-.masthead a {
+.masthead li{
   color: #fff !important;
 }
 
@@ -158,6 +162,12 @@ header.masthead {
 
 .navbar-nav .active .nav-link,
 .navbar-nav .nav-link:hover {
+  color: #e8aa00 !important;
+}
+
+/* Fix for dropdown arrow color on hover */
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-item:hover .dropdown-toggle::after {
   color: #e8aa00 !important;
 }
 
@@ -293,6 +303,48 @@ header.masthead {
     margin-top: 0;
     border: none;
     background-color: #09322e !important;
+  }
+}
+
+/* CTA Button Styles */
+.cta-nav-item {
+  margin-left: auto !important; /* This pushes the CTA button to the right */
+}
+
+.cta-button {
+  background-color: #a7ce09; /* Lime green color */
+  color: #000 !important; 
+  font-family: Raleway, sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 15px 30px;
+  text-decoration: none !important;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  padding: 8px !important;
+  border-radius: 2px;
+}
+
+.cta-button:hover {
+  background-color: #fff;
+  color: #000 !important;
+}
+
+/* Mobile responsiveness for CTA button */
+@media (max-width: 768px) {
+  .cta-nav-item {
+    margin-left: 0 !important; /* Reset margin on mobile */
+    width: 100%;
+  }
+  
+  .cta-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
   }
 }
 
@@ -477,7 +529,7 @@ header.masthead {
 }
 
 
-/* Modern Categories Section */
+/* categories */
 .categories-section {
   background-color: #f8f9fa;
   padding: 5rem 0;
@@ -492,17 +544,6 @@ header.masthead {
   text-transform: uppercase;
   letter-spacing: 3px;
   position: relative;
-}
-
-.section-title:after {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: #e8aa00;
 }
 
 .categories-grid {
@@ -541,6 +582,7 @@ header.masthead {
   margin-right: 1.25rem;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  position: relative; /* Added for positioning the hover image */
 }
 
 .category-icon i {
@@ -571,6 +613,41 @@ header.masthead {
   text-decoration: none;
 }
 
+/* New CSS for category images */
+.category-image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.hover-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.default-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover .default-image {
+  opacity: 0;
+}
+
+.category-card:hover .hover-image {
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .categories-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -587,6 +664,11 @@ header.masthead {
   
   .category-card h3 {
     font-size: 1rem;
+  }
+  
+  .category-image {
+    width: 25px;
+    height: 25px;
   }
 }
 
@@ -690,6 +772,48 @@ header.masthead {
   text-decoration: none;
 }
 
+
+
+/* facet = filters */
+.facet-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
+  text-decoration: none !important;
+}
+
+.facet-toggle:hover {
+  background: #ebebeb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.facet-toggle-icon {
+  font-size: 12px;
+  color: #555;
+  transition: transform 0.2s ease;
+}
+
+.module-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.module-heading i.fa-filter {
+  margin-right: 8px;
+}
+
+.facet-heading-text {
+  flex: 1;
+}
+
+
 @media (max-width: 768px) {
   .category-item {
       margin-bottom: 1rem;
@@ -709,4 +833,114 @@ header.masthead {
 
 .form-actions .btn {
   margin-bottom: .875rem !important;
+}
+
+
+/* homepage: cta section */
+/* Banner container */
+.grow-banner-container {
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Common styles for both banner sections */
+.banner-section {
+  flex: 1;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Resource section (left) */
+.resource-section {
+  background-color: #f4f5eb;
+}
+
+/* Help section (right) */
+.help-section {
+  background-color: #a6ce39;
+  color: white;
+}
+
+/* Icons */
+.icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.icon img {
+  width: 100%;
+  height: auto;
+}
+
+/* Headings */
+.banner-heading {
+  font-size: 2.2rem;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.resource-section .banner-heading {
+  color: #0b3b39;
+}
+
+.help-section .banner-heading {
+  color: white;
+}
+
+/* Description text */
+.banner-description {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  line-height: 1.4;
+}
+
+.resource-section .banner-description {
+  color: #333;
+}
+
+/* Buttons */
+.learn-more-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.resource-section .learn-more-btn {
+  background-color: #0b3b39;
+  color: white;
+}
+
+.resource-section .learn-more-btn:hover {
+  background-color: #124e4c;
+}
+
+.help-section .learn-more-btn {
+  background-color: white;
+  color: #0b3b39;
+}
+
+.help-section .learn-more-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .grow-banner-container {
+      flex-direction: column;
+  }
+  
+  .banner-heading {
+      font-size: 1.8rem;
+  }
 }

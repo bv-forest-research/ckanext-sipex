@@ -109,29 +109,33 @@
             <li class="nav-item">
               <a class="nav-link" href="https://sipexchangebc.com/">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://sipexchangebc.com/community/">Community</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="https://sipexchangebc.com/community/" id="informationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Community
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="informationDropdown">
+                <li><a class="dropdown-item" href="https://sipexchangebc.com/community/">About</a></li>
+                <li><a class="dropdown-item" href="https://sipexchangebc.com/find/">Find</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://sipexchangebc.com/capacity/">Building Capacity</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="https://sipexchangebc.com/capacity/" id="informationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Building Capacity
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="informationDropdown">
+                <li><a class="dropdown-item" href="https://sipexchangebc.com/capacity/#training">Training</a></li>
+                <li><a class="dropdown-item" href="https://sipexchangebc.com/capacity/#education">Education</a></li>
+                <li><a class="dropdown-item" href="https://sipexchangebc.com/capacity/#funding">Funding</a></li>
+              </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ h.url_for('home.index') }}">Explore Resources</a>
             </li>
-            <!-- Dropdown Menu -->
-            <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="informationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Information Repository
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="informationDropdown">
-                <li><a class="dropdown-item" href="{{ h.url_for('home.index') }}">Explore Data</a></li>
-                <li><a class="dropdown-item" href="{{ h.url_for('organization.index') }}">Organizations</a></li>
-                <li><a class="dropdown-item" href="{{ h.url_for('group.index') }}">Categories</a></li>
-              </ul>
-            </li> -->
+            <li class="nav-item ml-auto cta-nav-item">
+              <a href="#" class="cta-button">NEED HELP WITH A PROBLEM?</a>
+            </li>
           {% endblock %}
         </ul>
-      </div>
     </nav>
   </div>
 </header>
