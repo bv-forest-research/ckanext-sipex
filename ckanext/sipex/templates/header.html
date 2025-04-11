@@ -91,8 +91,12 @@
         {% endblock %}
 
         <div class="partner-logos">
-          <img src="{{ h.url_for_static('images/sip-logo.png') }}" alt="Silviculture Innovation Program" href="https://sip.bvcentre.ca/">
-          <img src="{{ h.url_for_static('images/bvrc-logo.png') }}" alt="Bulkley Valley Research Centre" href="https://bvcentre.ca/">
+          <a href="https://sip.bvcentre.ca/">
+            <img src="{{ h.url_for_static('images/sip-logo.png') }}" alt="Silviculture Innovation Program">
+          </a>
+          <a href="https://bvcentre.ca/">
+            <img src="{{ h.url_for_static('images/bvrc-logo.png') }}" alt="Bulkley Valley Research Centre">
+          </a>
         </div>
       </div>
     </div>
@@ -132,7 +136,7 @@
               <a class="nav-link" href="{{ h.url_for('home.index') }}">Explore Resources</a>
             </li>
             <li class="nav-item ml-auto cta-nav-item">
-              <a href="#" class="cta-button">NEED HELP WITH A PROBLEM?</a>
+              <a href="https://sipexchangebc.com/need-help-with-a-silviculture-problem/" class="cta-button">NEED HELP WITH A PROBLEM?</a>
             </li>
           {% endblock %}
         </ul>
