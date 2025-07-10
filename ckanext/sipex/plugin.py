@@ -30,3 +30,5 @@ class SipexPlugin(plugins.SingletonPlugin):
         return {
             'get_recent_datasets': get_recent_datasets
         }
+    
+    
