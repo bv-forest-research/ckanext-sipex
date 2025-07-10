@@ -3,6 +3,8 @@
 {% set dataset_type = h.default_package_type() %}
 
 <div class="module-search card box">
+  
+  <!-- form action controls what it does after the button is clicked whuch is currently already searching datasets -->
   <form class="module-content search-form" method="get" action="{% url_for dataset_type ~ '.search' %}">
     <div class="search-input form-group search-giant">
       <input aria-label="{% block header_site_search_label %}{{ h.humanize_entity_type('package', dataset_type, 'search placeholder') or _('Search datasets') }}{% endblock %}" id="field-main-search" type="text" class="form-control" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
@@ -11,7 +13,60 @@
         <span class="sr-only" id="search-label">{{ _('Search') }}</span>
       </button>
     </div>
+    
+    <!-- refine search button -->
+    <div class="refine-search-toggle">
+      <button type="button" class="btn btn-link" id="refine-toggle" onclick="toggleRefineSearch()">
+        <i class="fa fa-filter"></i> {{ _('Refine Search') }}
+        <i class="fa fa-chevron-down" id="refine-chevron"></i>
+      </button>
+    </div>
+    
+    <!-- expanded section -->
+    <div class="refine-search-section" id="refine-search" style="display: none;">
+      <h4>{{ _('Refine Search') }}</h4>
+
+      <!-- need to have 1 rows with 2 columns and 4 dropdowns each -->
+      
+      <div class="row">
+        <!-- col 1 -->
+        <div class="col-md-6">
+          
+          <!-- sample dropdown -->
+          <div class="form-group">
+            <select class="form-control" name="tags">
+              <option value="">{{ _('All') }}</option>
+              <option value="#actual ckan tag#">{{ _('#Display Name#') }}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- col 2 -->
+        <div class="col-md-6">
+          <!-- sample dropdown -->
+          <div class="form-group">
+            <select class="form-control" name="tags">
+              <option value="">{{ _('All') }}</option>
+              <option value="#actual ckan tag#">{{ _('#Display Name#') }}</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- Apply and Clear Buttons -->
+      <div class="refine-buttons">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-filter"></i> {{ _('Apply Filters') }}
+        </button>
+        <a href="{% url_for dataset_type ~ '.search' %}" class="btn btn-secondary">
+          <i class="fa fa-times"></i> {{ _('Clear Filters') }}
+        </a>
+      </div>
+    </div>
   </form>
+  
   <div class="tags">
     <h3>{{ _('Popular tags') }}</h3>
     {% for tag in tags %}

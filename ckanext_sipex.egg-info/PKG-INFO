@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: ckanext-sipex
 Version: 0.0.1
 Author: 
@@ -12,6 +12,7 @@ Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Dynamic: license-file
 
 [![Tests](https://github.com//ckanext-sipex/workflows/Tests/badge.svg?branch=main)](https://github.com//ckanext-sipex/actions)
 

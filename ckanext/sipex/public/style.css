@@ -44,19 +44,17 @@ p{
 }
 
 /* header */
-
-/* Account masthead styles */
 .account-masthead {
   background-color: #002a26 !important;
   color: #fff !important;
   text-transform: uppercase;
   font-family: Raleway !important;
   margin-bottom: 0 !important;
-  display: none; /* Default to hidden */
+  display: none; 
 }
 
 body.user-is-logged-in .account-masthead {
-  display: block; /* Only show when user is logged in */
+  display: block;
 }
 
 .account-masthead ul, 
@@ -65,7 +63,6 @@ body.user-is-logged-in .account-masthead {
   color: #fff !important;
 }
 
-/* Masthead styles */
 header.masthead {
   background-color: #002a26 !important;
   color: #fff !important;
@@ -84,7 +81,7 @@ header.masthead {
   color: #fff !important;
 }
 
-/* Logo section */
+/* logo section */
 .header-brand-row {
   max-width: 1200px;
   margin: 0 auto;
@@ -111,7 +108,7 @@ header.masthead {
   height: 50px;
 }
 
-/* Navigation */
+/* navigation */
 .navbar {
   background-color: #09322e !important;
   width: 100%;
@@ -165,13 +162,13 @@ header.masthead {
   color: #e8aa00 !important;
 }
 
-/* Fix for dropdown arrow color on hover */
+
 .navbar-nav .nav-link:hover::after,
 .navbar-nav .nav-item:hover .dropdown-toggle::after {
   color: #e8aa00 !important;
 }
 
-/* Site search */
+/* site search */
 .site-search {
   position: absolute;
   right: 20px;
@@ -199,7 +196,7 @@ header.masthead {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Responsive styles */
+/* nav responsive */
 @media (max-width: 768px) {
   .navbar-collapse {
     background-color: #09322e;
@@ -261,7 +258,7 @@ header.masthead {
   }
 }
 
-/* Dropdown styles */
+/* nav dropdown */
 .navbar .dropdown-menu {
   background-color: #09322e !important;
   border: none !important;
@@ -286,7 +283,6 @@ header.masthead {
   color: white;
 }
 
-/* Ensure dropdown is full width on mobile */
 @media (max-width: 768px) {
   .navbar .dropdown-menu {
     width: 100%;
@@ -306,13 +302,13 @@ header.masthead {
   }
 }
 
-/* CTA Button Styles */
+/* CTA */
 .cta-nav-item {
-  margin-left: auto !important; /* This pushes the CTA button to the right */
+  margin-left: auto !important; 
 }
 
 .cta-button {
-  background-color: #a7ce09; /* Lime green color */
+  background-color: #a7ce09; 
   color: #000 !important; 
   font-family: Raleway, sans-serif !important;
   font-weight: 700 !important;
@@ -333,7 +329,7 @@ header.masthead {
   color: #000 !important;
 }
 
-/* Mobile responsiveness for CTA button */
+/* cta responsive */
 @media (max-width: 768px) {
   .cta-nav-item {
     margin-left: 0 !important; /* Reset margin on mobile */
@@ -582,7 +578,7 @@ header.masthead {
   margin-right: 1.25rem;
   transition: all 0.3s ease;
   flex-shrink: 0;
-  position: relative; /* Added for positioning the hover image */
+  position: relative; 
 }
 
 .category-icon i {
@@ -613,7 +609,6 @@ header.masthead {
   text-decoration: none;
 }
 
-/* New CSS for category images */
 .category-image {
   width: 30px;
   height: 30px;
@@ -673,7 +668,7 @@ header.masthead {
 }
 
 
-/* Recent Datasets Section */
+/* recent datasets section */
 .recent-datasets-section {
   padding: 4rem 0;
   background-color: #ffffff;
@@ -837,7 +832,7 @@ header.masthead {
 
 
 /* homepage: cta section */
-/* Banner container */
+/* banner container */
 .grow-banner-container {
   display: flex;
   width: 100%;
@@ -845,7 +840,6 @@ header.masthead {
   margin: 0 auto;
 }
 
-/* Common styles for both banner sections */
 .banner-section {
   flex: 1;
   padding: 60px 40px;
@@ -854,18 +848,16 @@ header.masthead {
   align-items: flex-start;
 }
 
-/* Resource section (left) */
 .resource-section {
   background-color: #f4f5eb;
 }
 
-/* Help section (right) */
 .help-section {
   background-color: #a6ce39;
   color: white;
 }
 
-/* Icons */
+/* icons */
 .icon {
   width: 50px;
   height: 50px;
@@ -877,7 +869,6 @@ header.masthead {
   height: auto;
 }
 
-/* Headings */
 .banner-heading {
   font-size: 2.2rem;
   font-weight: bold;
@@ -893,7 +884,6 @@ header.masthead {
   color: white;
 }
 
-/* Description text */
 .banner-description {
   font-size: 1rem;
   margin-bottom: 30px;
@@ -904,7 +894,7 @@ header.masthead {
   color: #333;
 }
 
-/* Buttons */
+/* buttons */
 .learn-more-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -934,7 +924,7 @@ header.masthead {
   background-color: #f0f0f0;
 }
 
-/* Responsive styles */
+/* banner responsive */
 @media (max-width: 768px) {
   .grow-banner-container {
       flex-direction: column;
@@ -943,4 +933,76 @@ header.masthead {
   .banner-heading {
       font-size: 1.8rem;
   }
+}
+
+
+/* refine search */
+.refine-search-toggle {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.refine-search-toggle .btn-link {
+  text-decoration: none !important;
+  color: #fff;
+  font-size: 14px;
+}
+
+.refine-search-toggle .btn-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.refine-search-section {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  margin: 10px 0;
+  border: 1px solid #fff;
+}
+
+.refine-search-section h4 {
+  margin-bottom: 15px;
+  color: #495057;
+  font-size: 16px;
+}
+
+.refine-search-section .form-group {
+  margin-bottom: 10px;
+}
+
+.refine-search-section .form-control {
+  font-size: 14px;
+}
+
+#refine-chevron {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.refine-expanded #refine-chevron {
+  transform: rotate(180deg);
+}
+
+.refine-buttons {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.refine-buttons .btn {
+  margin: 0 10px;
+  min-width: 120px;
+}
+
+.refine-buttons .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.refine-buttons .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
 }
