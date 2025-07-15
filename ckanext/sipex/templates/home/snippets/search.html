@@ -33,10 +33,57 @@
         <div class="col-md-6">
           
           <!-- sample dropdown -->
+          <h6>{{ _('Geographic Area') }}</h6>
+
           <div class="form-group">
             <select class="form-control" name="tags">
               <option value="">{{ _('All') }}</option>
-              <option value="#actual ckan tag#">{{ _('#Display Name#') }}</option>
+              <option value="Southern Interior BC">{{ _('Southern Interior BC') }}</option>
+              <option value="#actual ckan tag#">{{ _('South-eastern Interior BC') }}</option>
+              <option value="North Interior BC">{{ _('North Interior BC') }}</option>
+              <option value="Central Interior BC">{{ _('Central Interior BC') }}</option>
+              <option value="Central Coast BC">{{ _('Central Coast BC') }}</option>
+              <option value="North Coast BC">{{ _('North Coast BC') }}</option>
+              <option value="South Coast BC">{{ _('South Coast BC') }}</option>
+              <option value="#actual ckan tag#">{{ _('Other Canadian Provinces/territories') }}</option>
+              <option value="#actual ckan tag#">{{ _('Western USA') }}</option>
+            </select>
+          </div>
+
+          <h6>{{ _('Forest Type') }}</h6>
+
+          <div class="form-group">
+            <select class="form-control" name="tags">
+              <option value="">{{ _('All') }}</option>
+              <option value="#actual ckan tag#">{{ _('Coastal') }}</option>
+              <option value="Boreal forests">{{ _('Boreal') }}</option>
+              <option value="Sub-boreal forests">{{ _('Sub-boreal') }}</option>
+              <option value="Dry interior forests">{{ _('Dry interior') }}</option>
+              <option value="Montane and subalpine forests">{{ _('Montane and subalpine') }}</option>
+              <option value="Wet interior forests">{{ _('Wet interior') }}</option>
+              <option value="Coastal montane forests">{{ _('Coastal montane') }}</option>
+            </select>
+          </div>
+
+          <h6>{{ _('BEC Zone') }}</h6>
+
+          <div class="form-group">
+            <select class="form-control" name="tags">
+              <option value="">{{ _('All') }}</option>
+              <option value="CWH">{{ _('CWH') }}</option>
+              <option value="CDF">{{ _('CDF') }}</option>
+              <option value="BWBS">{{ _('BWBS') }}</option>
+              <option value="SWB">{{ _('SWB') }}</option>
+              <option value="SBS">{{ _('SBS') }}</option>
+              <option value="SBPS">{{ _('SBPS') }}</option>
+              <option value="IDF">{{ _('IDF') }}</option>
+              <option value="PP">{{ _('PP') }}</option>
+              <option value="MS">{{ _('MS') }}</option>
+              <option value="ESSF">{{ _('ESSF') }}</option>
+              <option value="ICH">{{ _('ICH') }}</option>
+              <option value="MH">{{ _('MH') }}</option>
+              <option value="AT">{{ _('AT') }}</option>
+              <option value="BG">{{ _('BG') }}</option>
             </select>
           </div>
 
@@ -45,10 +92,65 @@
         <!-- col 2 -->
         <div class="col-md-6">
           <!-- sample dropdown -->
+          <h6>{{ _('Silviculture Phase') }}</h6>
+
           <div class="form-group">
             <select class="form-control" name="tags">
               <option value="">{{ _('All') }}</option>
-              <option value="#actual ckan tag#">{{ _('#Display Name#') }}</option>
+              <option value="Harvest">{{ _('Harvest') }}</option>
+              <option value="Reforestation">{{ _('Reforestation') }}</option>
+              <option value="Site preparation">{{ _('Site preparation') }}</option>
+              <option value="#actual ckan tag#">{{ _('Waste/biomass/fuel management') }}</option>
+              <option value="#actual ckan tag#">{{ _('Intervention') }}</option>
+              <option value="Adaptive management">{{ _('Adaptive management') }}</option>
+              <option value="Restoration">{{ _('Restoration') }}</option>
+            </select>
+          </div>
+
+          <h6>{{ _('Silviculture Techniques') }}</h6>
+
+          <div class="form-group">
+            <select class="form-control" name="tags">
+              <option value="">{{ _('All') }}</option>
+              <option value="Variable retention">{{ _('Variable retention') }}</option>
+              <option value="Prescribed fire">{{ _('Prescribed fire') }}</option>
+              <option value="Cultural fire">{{ _('Cultural fire') }}</option>
+              <option value="Commercial thinning">{{ _('Commercial thinning') }}</option>
+              <option value="Pre-commercial thinning">{{ _('Pre-commercial thinning') }}</option>
+              <option value="Fertilizing">{{ _('Fertilizing') }}</option>
+              <option value="Waste management">{{ _('Waste management') }}</option>
+              <option value="Fuel management">{{ _('Fuel management') }}</option>
+              <option value="Biomass product">{{ _('Biomass product') }}</option>
+              <option value="Monitoring">{{ _('Monitoring') }}</option>
+              <option value="Models">{{ _('Models') }}</option>
+              <option value="Regeneration cut">{{ _('Regeneration cut') }}</option>
+              <option value="Patch cutting">{{ _('Patch cut') }}</option>
+              <option value="Brushing">{{ _('Brushing') }}</option>
+              <option value="Pruning">{{ _('Pruning') }}</option>
+              <option value="Restoration">{{ _('Restoration') }}</option>
+              <option value="Salvage">{{ _('Salvage') }}</option>
+            </select>
+          </div>
+
+          <h6>{{ _('Values') }}</h6>
+
+          <div class="form-group">
+            <select class="form-control" name="tags">
+              <option value="">{{ _('All') }}</option>
+              <option value="Wildfire">{{ _('Wildfire') }}</option>
+              <option value="Hydrology">{{ _('Hydrology') }}</option>
+              <option value="Wildlife">{{ _('Wildlife') }}</option>
+              <option value="#actual ckan tag#">{{ _('Cultural plants') }}</option>
+              <option value="Biomass">{{ _('Biomass') }}</option>
+              <option value="Carbon">{{ _('Carbon') }}</option>
+              <option value="Old growth stand structure">{{ _('Old growth stand structure') }}</option>
+              <option value="Forest health">{{ _('Forest health') }}</option>
+              <option value="Ecosystem health">{{ _('Ecosystem health') }}</option>
+              <option value="Climate change resilience">{{ _('Climate change resilience') }}</option>
+              <option value="Timber">{{ _('Timber') }}</option>
+              <option value="#actual ckan tag#">{{ _('Cultural practices') }}</option>
+              <option value="#actual ckan tag#">{{ _('Economics') }}</option>
+              <option value="#actual ckan tag#">{{ _('Visuals') }}</option>
             </select>
           </div>
 
