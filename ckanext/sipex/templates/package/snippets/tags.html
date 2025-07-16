@@ -1,0 +1,23 @@
+{#
+  Renders tags with collapsible functionality
+  tags - a list of tag dicts
+  Example:
+  {% snippet "package/snippets/tags.html", tags=pkg.tags %}
+#}
+
+{% if tags %}
+
+<section class="tags-section">
+    <a href="#" class="tags-toggle" onclick="toggleTags(event)" aria-expanded="false" aria-controls="tags-content">
+      <span>View Tags</span>
+      <i class="fa fa-chevron-right" id="tags-chevron"></i>
+    </a>
+    
+    <div id="tags-content" class="tags-content" style="display: none;">
+      <section class="tags">
+        {% snippet 'snippets/tag_list.html', tags=tags, _class='tag-list' %}
+      </section>
+    </div>
+  </section>
+
+  {% endif %}

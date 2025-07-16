@@ -1,0 +1,56 @@
+{% ckan_extends %}
+
+{% block heading %}
+  {% set allowed_tags = ['Case study', 'Extension note', 'Technical report', 'Decision aid', 'Guidance document', 'Peer-reviewed literature', 'Presentation slides', 'Webinar'] %}
+  {% set matching_tags = [] %}
+  
+  {% if package.tags %}
+    {% for tag in package.tags %}
+      {% if tag.name in allowed_tags %}
+        {% set _ = matching_tags.append(tag.name) %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  
+  {% if matching_tags %}
+    <div class="dataset-tags-horizontal">
+      {% for tag_name in matching_tags %}
+        <span class="dataset-tag">{{ tag_name }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {{ super() }}
+{% endblock %}
+
+{% block heading_title %}
+  <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" aria-label="{{ _('Navigate to dataset: {title}').format(title=title) }}">
+    {{ title }}
+  </a>
+{% endblock %}
+
+{% block notes %}
+  {% if package.notes %}
+    {% set full_description = package.notes %}
+    {% if full_description|length > 180 %}
+      <div class="dataset-description-all" id="desc-{{ package.id }}">
+        <div class="dataset-content-all">
+          <div class="desc-short">{{ full_description[:250]|urlize }}...</div>
+          <div class="desc-full">{{ full_description|urlize }}</div>
+        </div>
+        <button class="read-more-btn" onclick="toggleDescription('{{ package.id }}')">
+          <span class="more-text">{{ _('Read more') }}</span>
+          <span class="less-text">{{ _('Show less') }}</span>
+        </button>
+      </div>
+    {% else %}
+      <div class="dataset-description-all">
+        <div class="dataset-content-all">
+          {{ full_description|urlize }}
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    <p class="empty">{{ h.humanize_entity_type('package', package.type, 'no description') or _("There is no description for this dataset") }}</p>
+  {% endif %}
+{% endblock %}

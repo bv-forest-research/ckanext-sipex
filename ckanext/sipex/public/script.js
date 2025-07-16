@@ -87,7 +87,7 @@ $(document).ready(function() {
         e.preventDefault();
         
         var $toggle = $(this);
-        var targetId = $toggle.data('target').substring(1); // Remove the # character
+        var targetId = $toggle.data('target').substring(1);
         var $target = $('#' + targetId);
         var $icon = $toggle.find('.facet-toggle-icon');
         
@@ -151,9 +151,47 @@ function toggleRefineSearch() {
 }
 
 function clearFilters() {
-  // Reset all select elements in the refine search section
   const selects = document.querySelectorAll('#refine-search select');
   selects.forEach(select => {
     select.selectedIndex = 0;
   });
+}
+
+window.toggleDescription = function(packageId) {
+    console.log('Toggling description for package:', packageId);
+    
+    var container = document.getElementById('desc-' + packageId);
+    if (!container) {
+    console.error('Container not found for package:', packageId);
+    return;
+    }
+    
+    var isExpanded = container.classList.contains('expanded');
+    console.log('Current state expanded:', isExpanded);
+    
+    if (isExpanded) {
+    container.classList.remove('expanded');
+    console.log('Collapsed description');
+    } else {
+    container.classList.add('expanded');
+    console.log('Expanded description');
+    }
+};
+
+console.log('Description toggle function loaded');
+
+
+function toggleTags(event) {
+    event.preventDefault();
+    const toggle = event.currentTarget;
+    const content = document.getElementById('tags-content');
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    
+    if (isExpanded) {
+    content.style.display = 'none';
+    toggle.setAttribute('aria-expanded', 'false');
+    } else {
+    content.style.display = 'block';
+    toggle.setAttribute('aria-expanded', 'true');
+    }
 }
