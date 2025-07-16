@@ -969,6 +969,13 @@ header.masthead {
   font-size: 16px;
 }
 
+.refine-search-section h6 {
+  margin-top: 20px;
+  margin-left: 5px;
+  color: #495057;
+  font-size: 14px;
+}
+
 .refine-search-section .form-group {
   margin-bottom: 10px;
 }
