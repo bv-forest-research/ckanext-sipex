@@ -10,7 +10,6 @@ ckanext/sipex/__init__.py
 ckanext/sipex/plugin.py
 ckanext/sipex/assets/script.js
 ckanext/sipex/assets/webassets.yml
-ckanext/sipex/public/.DS_Store
 ckanext/sipex/public/.gitignore
 ckanext/sipex/public/script.js
 ckanext/sipex/public/style.css
