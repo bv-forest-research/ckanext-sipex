@@ -7,11 +7,73 @@
   <!-- form action controls what it does after the button is clicked whuch is currently already searching datasets -->
   <form class="module-content search-form" method="get" action="{% url_for dataset_type ~ '.search' %}">
     <div class="search-input form-group search-giant">
-      <input aria-label="{% block header_site_search_label %}{{ h.humanize_entity_type('package', dataset_type, 'search placeholder') or _('Search datasets') }}{% endblock %}" id="field-main-search" type="text" class="form-control" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
-      <button class="btn" type="submit" aria-labelledby="search-label">
-        <i class="fa fa-search"></i>
-        <span class="sr-only" id="search-label">{{ _('Search') }}</span>
-      </button>
+      <div class="search-bar-container">
+        <input aria-label="{% block header_site_search_label %}{{ h.humanize_entity_type('package', dataset_type, 'search placeholder') or _('Search datasets') }}{% endblock %}" id="field-main-search" type="text" class="form-control search-input-field" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
+        
+        <div class="button-group">
+          <button class="btn search-btn" type="submit" aria-labelledby="search-label">
+            <i class="fa fa-search"></i>
+            <span class="sr-only" id="search-label">{{ _('Search') }}</span>
+          </button>
+          
+          <button type="button" class="btn info-btn" id="search-info-btn">
+            <i class="fa fa-info-circle"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="search-tooltip" id="search-tooltip">
+        <div class="tooltip-content">
+          <h4>Search Tips</h4>
+          <p>Enhance your search using these special operators and techniques:</p>
+          
+          <table class="search-operators-table">
+            <thead>
+              <tr>
+                <th>Operator</th>
+                <th>Function</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AND</strong></td>
+                <td>Returns results containing all specified terms</td>
+                <td><code>Douglas AND Fir</code></td>
+              </tr>
+              <tr>
+                <td><strong>OR</strong></td>
+                <td>Returns results containing any of the specified terms</td>
+                <td><code>Pine OR Spruce</code></td>
+              </tr>
+              <tr>
+                <td><strong>NOT</strong></td>
+                <td>Excludes results containing the term after NOT</td>
+                <td><code>Forest NOT Fire</code></td>
+              </tr>
+              <tr>
+                <td><strong>" "</strong></td>
+                <td>Searches for exact phrase matches</td>
+                <td><code>"old growth forest"</code></td>
+              </tr>
+              <tr>
+                <td><strong>( )</strong></td>
+                <td>Groups search terms to control search logic</td>
+                <td><code>Harvest AND (Pine OR Cedar)</code></td>
+              </tr>
+              <tr>
+                <td><strong>*</strong></td>
+                <td>Matches any characters after the root word</td>
+                <td><code>Silvi*</code></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <p class="search-note">
+            <strong>Important:</strong> Operators like AND, OR, and NOT must be typed in UPPERCASE. The search may automatically include related word forms.
+          </p>
+        </div>
+      </div>
     </div>
     
     <!-- refine search button -->
@@ -25,28 +87,24 @@
     <!-- expanded section -->
     <div class="refine-search-section" id="refine-search" style="display: none;">
       <h4>{{ _('Refine Search') }}</h4>
-
-      <!-- need to have 1 rows with 2 columns and 4 dropdowns each -->
       
       <div class="row">
         <!-- col 1 -->
         <div class="col-md-6">
           
-          <!-- sample dropdown -->
           <h6>{{ _('Geographic Area') }}</h6>
 
           <div class="form-group">
             <select class="form-control" name="tags">
               <option value="">{{ _('All') }}</option>
               <option value="Southern Interior BC">{{ _('Southern Interior BC') }}</option>
-              <option value="#actual ckan tag#">{{ _('South-eastern Interior BC') }}</option>
               <option value="North Interior BC">{{ _('North Interior BC') }}</option>
               <option value="Central Interior BC">{{ _('Central Interior BC') }}</option>
               <option value="Central Coast BC">{{ _('Central Coast BC') }}</option>
               <option value="North Coast BC">{{ _('North Coast BC') }}</option>
               <option value="South Coast BC">{{ _('South Coast BC') }}</option>
-              <option value="#actual ckan tag#">{{ _('Other Canadian Provinces/territories') }}</option>
-              <option value="#actual ckan tag#">{{ _('Western USA') }}</option>
+              <option value="Other Canadian Provinces/Territories">{{ _('Other Canadian Provinces/Territories') }}</option>
+              <option value="Western USA">{{ _('Western USA') }}</option>
             </select>
           </div>
 
@@ -55,13 +113,12 @@
           <div class="form-group">
             <select class="form-control" name="tags">
               <option value="">{{ _('All') }}</option>
-              <option value="#actual ckan tag#">{{ _('Coastal') }}</option>
-              <option value="Boreal forests">{{ _('Boreal') }}</option>
-              <option value="Sub-boreal forests">{{ _('Sub-boreal') }}</option>
-              <option value="Dry interior forests">{{ _('Dry interior') }}</option>
-              <option value="Montane and subalpine forests">{{ _('Montane and subalpine') }}</option>
-              <option value="Wet interior forests">{{ _('Wet interior') }}</option>
-              <option value="Coastal montane forests">{{ _('Coastal montane') }}</option>
+              <option value="Coastal">{{ _('Coastal forests') }}</option>
+              <option value="Boreal">{{ _('Boreal forests') }}</option>
+              <option value="Sub-boreal">{{ _('Sub-boreal forests') }}</option>
+              <option value="Dry interior">{{ _('Dry interior forests') }}</option>
+              <option value="Montane and subalpine">{{ _('Montane and subalpine') }}</option>
+              <option value="Wet interior">{{ _('Wet interior forests') }}</option>
             </select>
           </div>
 
@@ -70,20 +127,18 @@
           <div class="form-group">
             <select class="form-control" name="tags">
               <option value="">{{ _('All') }}</option>
-              <option value="CWH">{{ _('CWH') }}</option>
-              <option value="CDF">{{ _('CDF') }}</option>
-              <option value="BWBS">{{ _('BWBS') }}</option>
-              <option value="SWB">{{ _('SWB') }}</option>
-              <option value="SBS">{{ _('SBS') }}</option>
-              <option value="SBPS">{{ _('SBPS') }}</option>
-              <option value="IDF">{{ _('IDF') }}</option>
-              <option value="PP">{{ _('PP') }}</option>
-              <option value="MS">{{ _('MS') }}</option>
-              <option value="ESSF">{{ _('ESSF') }}</option>
-              <option value="ICH">{{ _('ICH') }}</option>
-              <option value="MH">{{ _('MH') }}</option>
-              <option value="AT">{{ _('AT') }}</option>
-              <option value="BG">{{ _('BG') }}</option>
+              <option value="CWH">{{ _('CWH = coastal western hemlock') }}</option>
+              <option value="CDF">{{ _('CDF =  coastal douglas-fir') }}</option>
+              <option value="BWBS">{{ _('BWBS = boreal white and black spruce') }}</option>
+              <option value="SWB">{{ _('SWB =  spruce willow birch') }}</option>
+              <option value="SBS">{{ _('SBS = sub-boreal spruce') }}</option>
+              <option value="SBPS">{{ _('SBPS = sub-boreal pine-spruce') }}</option>
+              <option value="IDF">{{ _('IDF = interior douglas-fir') }}</option>
+              <option value="PP">{{ _('PP = ponderosa pine') }}</option>
+              <option value="MS">{{ _('MS = montane spruce') }}</option>
+              <option value="ESSF">{{ _('ESSF = engelmann spruce subalpine fir') }}</option>
+              <option value="ICH">{{ _('ICH = interior cedar hemlock') }}</option>
+              <option value="MH">{{ _('MH = montane hemlock') }}</option>
             </select>
           </div>
 
@@ -91,7 +146,6 @@
 
         <!-- col 2 -->
         <div class="col-md-6">
-          <!-- sample dropdown -->
           <h6>{{ _('Silviculture Phase') }}</h6>
 
           <div class="form-group">
@@ -100,10 +154,12 @@
               <option value="Harvest">{{ _('Harvest') }}</option>
               <option value="Reforestation">{{ _('Reforestation') }}</option>
               <option value="Site preparation">{{ _('Site preparation') }}</option>
-              <option value="#actual ckan tag#">{{ _('Waste/biomass/fuel management') }}</option>
-              <option value="#actual ckan tag#">{{ _('Intervention') }}</option>
+              <option value="Waste management">{{ _('Waste management') }}</option>
+              <option value="Fuel management">{{ _('Fuel management') }}</option>
+              <option value="Stand tending">{{ _('Stand tending') }}</option>
               <option value="Adaptive management">{{ _('Adaptive management') }}</option>
               <option value="Restoration">{{ _('Restoration') }}</option>
+              <option value="Salvage">{{ _('Salvage') }}</option>
             </select>
           </div>
 
@@ -113,22 +169,18 @@
             <select class="form-control" name="tags">
               <option value="">{{ _('All') }}</option>
               <option value="Variable retention">{{ _('Variable retention') }}</option>
-              <option value="Prescribed fire">{{ _('Prescribed fire') }}</option>
-              <option value="Cultural fire">{{ _('Cultural fire') }}</option>
               <option value="Commercial thinning">{{ _('Commercial thinning') }}</option>
-              <option value="Pre-commercial thinning">{{ _('Pre-commercial thinning') }}</option>
+              <option value="Variable density thinning">{{ _('Variable density thinning') }}</option>
+              <option value="Spacing">{{ _('Spacing') }}</option>
+              <option value="Cultural fire">{{ _('Cultural fire') }}</option>
+              <option value="Prescribed fire">{{ _('Prescribed fire') }}</option>
+              <option value="Planting">{{ _('Planting') }}</option>
               <option value="Fertilizing">{{ _('Fertilizing') }}</option>
-              <option value="Waste management">{{ _('Waste management') }}</option>
-              <option value="Fuel management">{{ _('Fuel management') }}</option>
-              <option value="Biomass product">{{ _('Biomass product') }}</option>
-              <option value="Monitoring">{{ _('Monitoring') }}</option>
-              <option value="Models">{{ _('Models') }}</option>
-              <option value="Regeneration cut">{{ _('Regeneration cut') }}</option>
-              <option value="Patch cutting">{{ _('Patch cut') }}</option>
-              <option value="Brushing">{{ _('Brushing') }}</option>
               <option value="Pruning">{{ _('Pruning') }}</option>
+              <option value="Brushing">{{ _('Brushing') }}</option>
               <option value="Restoration">{{ _('Restoration') }}</option>
-              <option value="Salvage">{{ _('Salvage') }}</option>
+              <option value="Models">{{ _('Models') }}</option>
+              <option value="Monitoring">{{ _('Monitoring') }}</option>
             </select>
           </div>
 
@@ -137,10 +189,10 @@
           <div class="form-group">
             <select class="form-control" name="tags">
               <option value="">{{ _('All') }}</option>
-              <option value="Wildfire">{{ _('Wildfire') }}</option>
+              <option value="Wildfire risk">{{ _('Wildfire risk') }}</option>
               <option value="Hydrology">{{ _('Hydrology') }}</option>
               <option value="Wildlife">{{ _('Wildlife') }}</option>
-              <option value="#actual ckan tag#">{{ _('Cultural plants') }}</option>
+              <option value="Cultural plants">{{ _('Cultural plants') }}</option>
               <option value="Biomass">{{ _('Biomass') }}</option>
               <option value="Carbon">{{ _('Carbon') }}</option>
               <option value="Old growth stand structure">{{ _('Old growth stand structure') }}</option>
@@ -148,9 +200,9 @@
               <option value="Ecosystem health">{{ _('Ecosystem health') }}</option>
               <option value="Climate change resilience">{{ _('Climate change resilience') }}</option>
               <option value="Timber">{{ _('Timber') }}</option>
-              <option value="#actual ckan tag#">{{ _('Cultural practices') }}</option>
-              <option value="#actual ckan tag#">{{ _('Economics') }}</option>
-              <option value="#actual ckan tag#">{{ _('Visuals') }}</option>
+              <option value="Cultural">{{ _('Cultural') }}</option>
+              <option value="Economic">{{ _('Economic') }}</option>
+              <option value="Visuals">{{ _('Visuals') }}</option>
             </select>
           </div>
 
@@ -162,17 +214,17 @@
         <button type="submit" class="btn btn-primary">
           <i class="fa fa-filter"></i> {{ _('Apply Filters') }}
         </button>
-        <a href="{% url_for dataset_type ~ '.search' %}" class="btn btn-secondary">
+        <button type="button" class="btn btn-secondary" onclick="clearFilters()">
           <i class="fa fa-times"></i> {{ _('Clear Filters') }}
-        </a>
+        </button>
       </div>
     </div>
   </form>
   
-  <div class="tags">
+  <!-- <div class="tags">
     <h3>{{ _('Popular tags') }}</h3>
     {% for tag in tags %}
       <a class="tag" href="{% url_for 'dataset.search', tags=tag.name %}" title="{{ tag.display_name }}">{{ tag.display_name|truncate(22) }}</a>
     {% endfor %}
-  </div>
+  </div> -->
 </div>

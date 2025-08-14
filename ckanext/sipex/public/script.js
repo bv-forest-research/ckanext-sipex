@@ -195,3 +195,71 @@ function toggleTags(event) {
     toggle.setAttribute('aria-expanded', 'true');
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const infoBtn = document.getElementById('search-info-btn');
+    const tooltip = document.getElementById('search-tooltip');
+    
+    if (infoBtn && tooltip) {
+        infoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isVisible = tooltip.classList.contains('show');
+            
+            if (isVisible) {
+                hideTooltip();
+            } else {
+                showTooltip();
+            }
+        });
+        
+
+        document.addEventListener('click', function(e) {
+            if (!infoBtn.contains(e.target) && !tooltip.contains(e.target)) {
+                hideTooltip();
+            }
+        });
+        
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideTooltip();
+            }
+        });
+        
+
+        tooltip.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    
+    function showTooltip() {
+        tooltip.classList.add('show');
+        infoBtn.setAttribute('aria-expanded', 'true');
+    }
+    
+    function hideTooltip() {
+        tooltip.classList.remove('show');
+        infoBtn.setAttribute('aria-expanded', 'false');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const infoBtn = document.getElementById('search-info-btn');
+    
+    if (infoBtn) {
+        infoBtn.setAttribute('aria-label', 'Show search tips');
+        infoBtn.setAttribute('aria-expanded', 'false');
+        infoBtn.setAttribute('aria-haspopup', 'true');
+    }
+});
+
+function clearFilters() {
+  const selects = document.querySelectorAll('#refine-search select');
+  selects.forEach(select => {
+    select.selectedIndex = 0;
+  });
+  
+  document.getElementById('field-main-search').value = '';
+}

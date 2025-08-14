@@ -68,28 +68,31 @@
 {% endblock %}
 
 <header class="masthead">
-  <div class="container">
-    {% block header_debug %} {% if g.debug and not g.debug_supress_header %}
-    <div class="debug">Blueprint : {{ g.blueprint }}<br />View : {{ g.view }}</div>
-    {% endif %} {% endblock %}
+  {% block header_debug %} {% if g.debug and not g.debug_supress_header %}
+  <div class="debug">Blueprint : {{ g.blueprint }}<br />View : {{ g.view }}</div>
+  {% endif %} {% endblock %}
 
-    <div class="header-brand-row">
-      <div class="logos">
-        {% block header_logo %}
-        <div class="main-logo">
-          {% if g.site_logo %}
-          <a class="logo" href="https://sipexchangebc.com/">
-            <img src="{{ h.url_for_static('images/sipex-logo.png') }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" />
-          </a>
-          {% else %}
-          <h1><a href="https://sipexchangebc.com/">SIPex</a></h1>
-          {% if g.site_description %}
-          <h2>{{ g.site_description }}</h2>
-          {% endif %}
-          {% endif %}
-        </div>
-        {% endblock %}
-
+  <div class="header-brand-row">
+    <div class="header-flex-container">
+      
+      {% block header_logo %}
+      <div class="main-logo">
+        {% if g.site_logo %}
+        <a class="logo" href="https://sipexchangebc.com/">
+          <img src="{{ h.url_for_static('images/sipex-logo.png') }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" />
+        </a>
+        {% else %}
+        <h1><a href="https://sipexchangebc.com/">SIPex</a></h1>
+        {% if g.site_description %}
+        <h2>{{ g.site_description }}</h2>
+        {% endif %}
+        {% endif %}
+      </div>
+      {% endblock %}
+      
+      
+      <div class="right-content">
+        
         <div class="partner-logos">
           <a href="https://sip.bvcentre.ca/">
             <img src="{{ h.url_for_static('images/sip-logo.png') }}" alt="Silviculture Innovation Program">
@@ -98,9 +101,15 @@
             <img src="{{ h.url_for_static('images/bvrc-logo.png') }}" alt="Bulkley Valley Research Centre">
           </a>
         </div>
+        
+        <div class="header-cta">
+          <a href="https://sipexchangebc.com/need-help-with-a-silviculture-problem/" class="cta-button">NEED HELP WITH A PROBLEM?</a>
+        </div>
       </div>
     </div>
+  </div>
 
+  <div class="container">
     <nav class="navbar navbar-expand-lg">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation-toggle"
         aria-controls="main-navigation-toggle" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
@@ -135,11 +144,12 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ h.url_for('home.index') }}">Explore Resources</a>
             </li>
-            <li class="nav-item ml-auto cta-nav-item">
-              <a href="https://sipexchangebc.com/need-help-with-a-silviculture-problem/" class="cta-button">NEED HELP WITH A PROBLEM?</a>
+            <li class="nav-item">
+              <a class="nav-link" href="https://sipexchangebc.com/featured-topics/">Featured Topics</a>
             </li>
           {% endblock %}
         </ul>
+      </div>
     </nav>
   </div>
 </header>
