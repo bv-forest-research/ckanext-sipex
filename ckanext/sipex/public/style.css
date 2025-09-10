@@ -633,7 +633,7 @@ header.masthead {
   text-transform: uppercase;
   letter-spacing: 3px;
   position: relative;
-  z-index: -1;
+  z-index: 1;
 
 }
 
@@ -767,6 +767,8 @@ header.masthead {
 .recent-datasets-section {
   padding: 4rem 0;
   background-color: #ffffff;
+  position: relative;
+  z-index: -2;
 }
 
 .dataset-card {
@@ -1422,6 +1424,8 @@ header.masthead {
 
 .tooltip-content {
   padding: 20px;
+  position: relative;
+  z-index: 9999;
 }
 
 .tooltip-content h4 {
