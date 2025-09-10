@@ -633,6 +633,8 @@ header.masthead {
   text-transform: uppercase;
   letter-spacing: 3px;
   position: relative;
+  z-index: -1;
+
 }
 
 .categories-grid {
@@ -1515,4 +1517,20 @@ header.masthead {
 
 .homepage .module-search .search-form button {
   margin-left: -10px !important;
+}
+
+
+.resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.resource-item .heading {
+    flex-grow: 1;
+}
+
+.resource-item .btn {
+    margin-left: 15px;
+    flex-shrink: 0;
 }

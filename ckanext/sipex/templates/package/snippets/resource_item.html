@@ -1,0 +1,30 @@
+{% ckan_extends %}
+
+{% block resource_item_title %}
+{% set name_or_id = res.name or res.id %}
+{% if res.url and h.is_url(res.url) %}
+  <a class="heading resource-url-analytics" href="{{ res.url }}" target="_blank" rel="noreferrer" aria-label="{{ _('Navigate to resource: {name_or_id}').format(name_or_id=name_or_id)}}">
+    {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+  </a>
+{% else %}
+  <a class="heading" href="{{ url }}" aria-label="{{ _('Navigate to resource: {name_or_id}').format(name_or_id=name_or_id)}}">
+    {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+  </a>
+{% endif %}
+{% endblock %}
+
+{% block resource_item_explore %}
+{% if not url_is_edit %}
+  {% if res.url and h.is_url(res.url) %}
+    <a class="btn btn-primary resource-url-analytics" href="{{ res.url }}" target="_blank" rel="noreferrer">
+      {% if res.has_views or res.url_type == 'upload' %}
+        <i class="fa fa-arrow-circle-down"></i>
+        {{ _('Download') }}
+      {% else %}
+        <i class="fa fa-external-link"></i>
+        {{ _('Go to resource') }}
+      {% endif %}
+    </a>
+  {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% ckan_extends %}
+
+{% block package_additional_info %}
+  {% if pkg_dict.author_email %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+      <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>
+    </tr>
+  {% elif pkg_dict.author %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+      <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
+    </tr>
+  {% endif %}
+  
+  {% if pkg_dict.license_title %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("License") }}</th>
+      <td class="dataset-details">
+        {% if pkg_dict.license_url %}
+          <a href="{{ pkg_dict.license_url }}" rel="dc:rights" target="_blank">{{ pkg_dict.license_title }}</a>
+        {% else %}
+          {{ pkg_dict.license_title }}
+        {% endif %}
+      </td>
+    </tr>
+  {% endif %}
+  
+  {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("State") }}</th>
+      <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+    </tr>
+  {% endif %}
+  
+  {% if pkg_dict.metadata_modified %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
+      <td class="dataset-details">
+          {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
+      </td>
+    </tr>
+  {% endif %}
+  
+  {% if pkg_dict.metadata_created %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+      <td class="dataset-details">
+          {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
+      </td>
+    </tr>
+  {% endif %}
+  
+  {% block extras scoped %}
+    {% for extra in h.sorted_extras(pkg_dict.extras) %}
+      {% set key, value = extra %}
+      <tr rel="dc:relation" resource="_:extra{{ i }}">
+        <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key|e) }}</th>
+        <td class="dataset-details" property="rdf:value">{{ value }}</td>
+      </tr>
+    {% endfor %}
+  {% endblock %}
+{% endblock %}
