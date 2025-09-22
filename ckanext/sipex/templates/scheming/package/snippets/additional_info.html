@@ -1,4 +1,4 @@
-{# org sectopo #}
+{# org section #}
 {% if pkg_dict.organization %}
 <section class="organization-info mb-4">
   <h3>{{ _('Organization') }}</h3>
@@ -40,7 +40,7 @@
 </section>
 {% endif %}
 
-{# Additional Info Section #}
+{# additional info section #}
 <section class="additional-info">
   <h3>{{ _('Additional Info') }}</h3>
   <table class="table table-striped table-bordered table-condensed">
@@ -52,61 +52,48 @@
     </thead>
     <tbody>
       {% block package_additional_info %}
-        {# Handle scheming fields #}
+        {% for field in schema.dataset_fields %}
+          {% if field.field_name == "author" and pkg_dict.author %}
+            <tr>
+              <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
+              <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
+            </tr>
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        
+        {% if pkg_dict.author_email %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _('Author Contact') }}</th>
+            <td class="dataset-details" property="dc:creator">
+              {{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author_email) }}
+            </td>
+          </tr>
+        {% endif %}
+        
         {% for field in schema.dataset_fields %}
           {% set field_value = pkg_dict.get(field.field_name) %}
-          
-          {# Source/URL field #}
-          {% if field.field_name == "url" and field_value %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _('Source') }}</th>
-              {% if h.is_url(field_value) %}
-                <td class="dataset-details" property="foaf:homepage">
-                  <a href="{{ field_value }}" rel="foaf:homepage" target="_blank">{{ field_value }}</a>
-                </td>
-              {% else %}
-                <td class="dataset-details" property="foaf:homepage">{{ field_value }}</td>
-              {% endif %}
-            </tr>
-          {% endif %}
-          
-          {# Author field #}
-          {% if field.field_name == "author" and (pkg_dict.author_email or pkg_dict.author) %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
-              <td class="dataset-details" property="dc:creator">
-                {% if pkg_dict.author_email %}
-                  {{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}
-                {% else %}
-                  {{ pkg_dict.author }}
-                {% endif %}
-              </td>
-            </tr>
-          {% endif %}
-          
-          {# Maintainer field #}
-          {% if field.field_name == "maintainer" and (pkg_dict.maintainer_email or pkg_dict.maintainer) %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
-              <td class="dataset-details" property="dc:contributor">
-                {% if pkg_dict.maintainer_email %}
-                  {{ h.mail_to(email_address=pkg_dict.maintainer_email, name=pkg_dict.maintainer) }}
-                {% else %}
-                  {{ pkg_dict.maintainer }}
-                {% endif %}
-              </td>
-            </tr>
-          {% endif %}
-          
-          {# Version field #}
-          {% if field.field_name == "version" and field_value %}
+          {% if field.field_name == "publication_yr" and field_value %}
             <tr>
               <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
               <td class="dataset-details">{{ field_value }}</td>
             </tr>
+            {% break %}
           {% endif %}
-          
-          {# License field - using scheming #}
+        {% endfor %}
+        
+        {% for field in schema.dataset_fields %}
+          {% set field_value = pkg_dict.get(field.field_name) %}
+          {% if field.field_name == "descriptive_location" and field_value %}
+            <tr>
+              <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
+              <td class="dataset-details">{{ field_value }}</td>
+            </tr>
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        
+        {% for field in schema.dataset_fields %}
           {% if field.field_name == "license_id" and (pkg_dict.license_url or pkg_dict.license_id) %}
             <tr>
               <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
@@ -122,26 +109,10 @@
                 {% endif %}
               </td>
             </tr>
+            {% break %}
           {% endif %}
-          
-          {# Custom fields from your schema #}
-          {% if field.field_name == "descriptive_location" and field_value %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
-              <td class="dataset-details">{{ field_value }}</td>
-            </tr>
-          {% endif %}
-          
-          {% if field.field_name == "publication_yr" and field_value %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
-              <td class="dataset-details">{{ field_value }}</td>
-            </tr>
-          {% endif %}
-          
         {% endfor %}
         
-        {# Non-schema fields #}
         {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
           <tr>
             <th scope="row" class="dataset-label">{{ _("State") }}</th>

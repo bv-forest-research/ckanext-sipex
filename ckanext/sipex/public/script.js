@@ -140,13 +140,48 @@ function toggleRefineSearch() {
   const refineSection = document.getElementById('refine-search');
   const chevron = document.getElementById('refine-chevron');
   const toggle = document.getElementById('refine-toggle');
+  const hero = document.querySelector('.homepage .hero');
   
-  if (refineSection.style.display === 'none') {
-    refineSection.style.display = 'block';
-    toggle.classList.add('refine-expanded');
-  } else {
-    refineSection.style.display = 'none';
+  if (refineSection.classList.contains('show')) {
+    const currentHeight = refineSection.scrollHeight;
+    refineSection.style.maxHeight = currentHeight + 'px';
+    refineSection.style.padding = '20px';
+    refineSection.offsetHeight;
+    
+    refineSection.style.maxHeight = '0';
+    refineSection.style.padding = '0 20px';
     toggle.classList.remove('refine-expanded');
+    
+    setTimeout(() => {
+      refineSection.classList.remove('show');
+      refineSection.style.padding = '';
+    }, 400);
+    
+    if (hero) {
+      hero.style.minHeight = '65vh';
+    }
+  } else {
+    refineSection.classList.add('show');
+    refineSection.style.padding = '20px';
+    const scrollHeight = refineSection.scrollHeight;
+    refineSection.style.maxHeight = scrollHeight + 'px';
+    toggle.classList.add('refine-expanded');
+    
+    if (hero) {
+      const heroHeight = hero.offsetHeight;
+      const newHeight = heroHeight + scrollHeight + 40; 
+      hero.style.minHeight = newHeight + 'px';
+      
+      setTimeout(() => {
+        refineSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 450);
+    }
+    
+    setTimeout(() => {
+      if (refineSection.classList.contains('show')) {
+        refineSection.style.maxHeight = 'none';
+      }
+    }, 400);
   }
 }
 
@@ -155,7 +190,20 @@ function clearFilters() {
   selects.forEach(select => {
     select.selectedIndex = 0;
   });
+  
+  const searchInput = document.getElementById('field-main-search');
+  if (searchInput) {
+    searchInput.value = '';
+  }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const refineSection = document.getElementById('refine-search');
+  if (refineSection) {
+    refineSection.classList.remove('show');
+    refineSection.style.display = '';
+  }
+});
 
 window.toggleDescription = function(packageId) {
     console.log('Toggling description for package:', packageId);
