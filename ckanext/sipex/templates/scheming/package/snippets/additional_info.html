@@ -66,7 +66,7 @@
           <tr>
             <th scope="row" class="dataset-label">{{ _('Author Contact') }}</th>
             <td class="dataset-details" property="dc:creator">
-              {% if '@' in pkg_dict.author_email and '.' in pkg_dict.author_email and not pkg_dict.author_email.startswith('http') %}
+              {% if '@' in pkg_dict.author_email and not pkg_dict.author_email.startswith('http') %}
                 {{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author_email) }}
               {% else %}
                 <a href="{{ pkg_dict.author_email }}" target="_blank" rel="noopener">{{ pkg_dict.author_email }}</a>
