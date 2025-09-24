@@ -13,6 +13,7 @@ ckanext/sipex/assets/webassets.yml
 ckanext/sipex/public/.gitignore
 ckanext/sipex/public/script.js
 ckanext/sipex/public/style.css
+ckanext/sipex/public/images/Main - CRD_FieldTour-17-2.webp
 ckanext/sipex/public/images/bvrc-logo.png
 ckanext/sipex/public/images/forest-products-h.png
 ckanext/sipex/public/images/forest-products.png
@@ -37,6 +38,7 @@ ckanext/sipex/templates/package/read_base.html
 ckanext/sipex/templates/package/snippets/additional_info.html
 ckanext/sipex/templates/package/snippets/resource_item.html
 ckanext/sipex/templates/package/snippets/tags.html
+ckanext/sipex/templates/scheming/package/snippets/additional_info.html
 ckanext/sipex/templates/snippets/facet_list.html
 ckanext/sipex/templates/snippets/package_item.html
 ckanext/sipex/tests/__init__.py
