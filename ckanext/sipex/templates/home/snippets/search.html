@@ -37,19 +37,9 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>AND</strong></td>
-                <td>Returns results containing all specified terms</td>
-                <td><code>Douglas AND Fir</code></td>
-              </tr>
-              <tr>
-                <td><strong>OR</strong></td>
-                <td>Returns results containing any of the specified terms</td>
-                <td><code>Pine OR Spruce</code></td>
-              </tr>
-              <tr>
-                <td><strong>NOT</strong></td>
-                <td>Excludes results containing the term after NOT</td>
-                <td><code>Forest NOT Fire</code></td>
+                <td><strong>-</strong></td>
+                <td>Excludes terms or phrases from the search</td>
+                <td><code>forest management -clearcut -plantation</code></td>
               </tr>
               <tr>
                 <td><strong>" "</strong></td>
@@ -57,20 +47,15 @@
                 <td><code>"old growth forest"</code></td>
               </tr>
               <tr>
-                <td><strong>( )</strong></td>
-                <td>Groups search terms to control search logic</td>
-                <td><code>Harvest AND (Pine OR Cedar)</code></td>
-              </tr>
-              <tr>
-                <td><strong>*</strong></td>
-                <td>Matches any characters after the root word</td>
-                <td><code>Silvi*</code></td>
+                <td><strong>AND</strong></td>
+                <td>Returns results containing all specified terms</td>
+                <td><code>Douglas fir AND regeneration</code></td>
               </tr>
             </tbody>
           </table>
           
           <p class="search-note">
-            <strong>Important:</strong> Operators like AND, OR, and NOT must be typed in UPPERCASE. The search may automatically include related word forms.
+            <strong>Important:</strong> AND operator must be typed in UPPERCASE.
           </p>
         </div>
       </div>
