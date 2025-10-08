@@ -7,16 +7,37 @@
   <!-- FontAwesome via CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   
-  <!-- Google Analytics (commented out) -->
-  <!-- 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGL4GFRVY7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NGL4GFRVY7');
-  </script>
-  -->
+<!-- Google Analytics with Cross-Domain Tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K234SBJ7YX"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K234SBJ7YX', {
+      'linker': {
+          'domains': ['sipexchangebc.com', 'resources.sipexchangebc.com'],
+          'accept_incoming': true
+      }
+  });
+
+  document.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (link && link.href) {
+          var href = link.href;
+          var downloadFormats = /\.(pdf|zip|doc|docx|xls|xlsx|csv|ppt|pptx|json|xml|geojson)$/i;
+          
+          if (downloadFormats.test(href) || link.classList.contains('resource-url-analytics')) {
+              gtag('event', 'file_download', {
+                  'file_name': href.split('/').pop(),
+                  'file_extension': href.split('.').pop(),
+                  'link_url': href
+              });
+          }
+      }
+  });
+</script>
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ h.url_for_static('script.js') }}"></script>
