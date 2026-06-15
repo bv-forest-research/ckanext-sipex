@@ -7,17 +7,132 @@
   <!-- FontAwesome via CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   
-  <!-- Google Analytics (commented out) -->
-  <!-- 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGL4GFRVY7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NGL4GFRVY7');
-  </script>
-  -->
-  
+  <!-- google analytics with cross-domain tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K234SBJ7YX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K234SBJ7YX', {
+      'linker': {
+          'domains': ['sipexchangebc.com', 'resources.sipexchangebc.com'],
+          'accept_incoming': true
+      }
+  });
+
+  // enhanced page view tracking for ckan
+  (function() {
+    var path = window.location.pathname;
+    var pageType = 'CKAN - Other';
+    var pageTitle = document.title;
+    var resourceName = '';
+    var datasetName = '';
+    var tags = [];
+    
+    // extract tags from the page if they exist
+    document.querySelectorAll('.tag, a[href*="/dataset?tags="], .dataset-tags a').forEach(function(tagElement) {
+      var tagText = tagElement.textContent.trim();
+      if (tagText && !tags.includes(tagText)) {
+        tags.push(tagText);
+      }
+    });
+    
+    // identify ckan page types and extract names
+    if (path.match(/\/dataset\/[^\/]+\/resource\//)) {
+      pageType = 'CKAN - Resource View';
+      resourceName = pageTitle.split(' - ')[0] || 'Unknown Resource';
+      var urlParts = path.split('/');
+      datasetName = urlParts[2] || '';
+    } else if (path.match(/\/dataset\/[^\/]+$/)) {
+      pageType = 'CKAN - Dataset View';
+      datasetName = path.split('/').pop();
+      resourceName = pageTitle.split(' - ')[0] || datasetName;
+    } else if (path.match(/\/dataset\/?$/) || path.match(/\/dataset\?tags=/)) {
+      pageType = 'CKAN - Dataset List';
+      // check if filtering by tag
+      var urlParams = new URLSearchParams(window.location.search);
+      var tagParam = urlParams.get('tags');
+      if (tagParam) {
+        pageType = 'CKAN - Tag Browse';
+        resourceName = 'Tag: ' + tagParam;
+      }
+    } else if (path.match(/\/organization\//)) {
+      pageType = 'CKAN - Organization';
+      resourceName = path.split('/').pop();
+    } else if (path.match(/\/group\//)) {
+      pageType = 'CKAN - Group';
+      resourceName = path.split('/').pop();
+    } else if (path === '/' || path === '') {
+      pageType = 'CKAN - Home';
+    } else if (path.match(/\/about/)) {
+      pageType = 'CKAN - About';
+    }
+    
+    // send custom page view with enhanced data
+    gtag('event', 'page_view', {
+      'page_title': pageTitle,
+      'page_location': window.location.href,
+      'page_path': path,
+      'content_group': pageType,
+      'resource_name': resourceName,
+      'dataset_name': datasetName,
+      'dataset_tags': tags.join(', '),
+      'tag_count': tags.length
+    });
+  })();
+
+  // track tag clicks
+  document.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (link && link.href) {
+          // track tag clicks
+          if (link.href.indexOf('/dataset?tags=') > -1 || 
+              link.classList.contains('tag') ||
+              link.closest('.dataset-tags')) {
+              var tagName = link.textContent.trim();
+              gtag('event', 'tag_click', {
+                  'tag_name': tagName,
+                  'link_url': link.href
+              });
+          }
+          
+          // track resource downloads
+          var href = link.href;
+          var downloadFormats = /\.(pdf|zip|doc|docx|xls|xlsx|csv|ppt|pptx|json|xml|geojson)$/i;
+          
+          if (downloadFormats.test(href)) {
+              var resourceName = link.textContent.trim() || 
+                                link.getAttribute('title') || 
+                                href.split('/').pop();
+              
+              gtag('event', 'file_download', {
+                  'file_name': href.split('/').pop(),
+                  'file_extension': href.split('.').pop(),
+                  'link_url': href,
+                  'resource_name': resourceName
+              });
+          }
+      }
+  });
+
+  // track ckan searches
+  document.addEventListener('DOMContentLoaded', function() {
+      var searchForm = document.querySelector('form.search-form, form[action*="dataset"]');
+      if (searchForm) {
+          searchForm.addEventListener('submit', function(e) {
+              var searchInput = this.querySelector('input[name="q"]');
+              if (searchInput && searchInput.value) {
+                  gtag('event', 'search', {
+                      'search_term': searchInput.value,
+                      'search_location': 'CKAN'
+                  });
+              }
+          });
+      }
+  });
+</script>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ h.url_for_static('script.js') }}"></script>
 {% endblock %}
