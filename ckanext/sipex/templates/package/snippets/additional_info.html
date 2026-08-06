@@ -138,6 +138,16 @@
               <td class="dataset-details">{{ field_value }}</td>
             </tr>
           {% endif %}
+
+          {% if field.field_name == "site_locations" %}
+  <tr>
+    <th scope="row" class="dataset-label">DEBUG site_locations</th>
+    <td class="dataset-details">
+      type: {{ field_value.__class__.__name__ }} |
+      raw: {{ field_value }}
+    </td>
+  </tr>
+{% endif %}
           
         {% endfor %}
         

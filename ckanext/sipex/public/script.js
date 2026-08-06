@@ -284,3 +284,16 @@ document.addEventListener('DOMContentLoaded', function() {
         infoBtn.setAttribute('aria-haspopup', 'true');
     }
 });
+
+function prepareTagFilters() {
+  document.querySelectorAll('.refine-search-section select[name="tags"]').forEach(function (sel) {
+    sel.disabled = !sel.value;
+  });
+}
+
+
+window.addEventListener('pageshow', function () {
+  document.querySelectorAll('.refine-search-section select[name="tags"]').forEach(function (sel) {
+    sel.disabled = false;
+  });
+});

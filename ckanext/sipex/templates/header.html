@@ -118,39 +118,33 @@
 
       <div class="collapse navbar-collapse" id="main-navigation-toggle">
         <ul class="navbar-nav">
-          {% block header_site_navigation_tabs %}
-            <li class="nav-item">
-              <a class="nav-link" href="https://sipexchangebc.com/">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="informationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Communities of Practice
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="informationDropdown">
-                <li><a class="dropdown-item" href="https://sipexchangebc.com/communities-of-practice/">About</a></li>
-                <li><a class="dropdown-item" href="https://sipexchangebc.com/find-a-community-of-practice/">Find a Community of Practice</a></li>
-                <li><a class="dropdown-item" href="https://sipexchangebc.com/find-an-expert/">Find an Expert</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://sipexchangebc.com/training-and-education">Training & Education</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ h.url_for('home.index') }}">Explore Resources</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://sipexchangebc.com/featured-topics/">Featured Topics</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="informationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Help
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="informationDropdown">
-                <li><a class="dropdown-item" href="https://sipexchangebc.com/help/">Resources</a></li>
-                <li><a class="dropdown-item" href="https://sipexchangebc.com/glossary/">Glossary</a></li>
-              </ul>
-            </li>
-          {% endblock %}
+           {% block header_site_navigation_tabs %}
+  <li class="nav-item">
+    <a class="nav-link" href="https://sipexchangebc.com/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ h.url_for('home.index') }}">Explore Resources</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://sipexchangebc.com/featured-topics/">Featured Topics</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="copDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Communities of Practice
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="copDropdown">
+      <li><a class="dropdown-item" href="https://sipexchangebc.com/communities-of-practice/">About</a></li>
+      <li><a class="dropdown-item" href="https://sipexchangebc.com/find-a-community-of-practice/">Find a Community of Practice</a></li>
+      <li><a class="dropdown-item" href="https://sipexchangebc.com/find-an-expert/">Find an Expert</a></li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://sipexchangebc.com/training-and-education">Training & Education</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://sip.bvcentre.ca/">About SIP</a>
+  </li>
+{% endblock %}
         </ul>
       </div>
     </nav>

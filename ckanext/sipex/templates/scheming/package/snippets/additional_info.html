@@ -96,6 +96,26 @@
             {% break %}
           {% endif %}
         {% endfor %}
+
+        {% for field in schema.dataset_fields %}
+          {% set field_value = pkg_dict.get(field.field_name) %}
+          {% if field.field_name == "site_locations" and field_value %}
+            <tr>
+              <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
+              <td class="dataset-details">
+                <ul class="list-unstyled mb-0">
+                  {% for site in field_value %}
+                    <li>
+                      {{ site.site_name }}
+                      <span class="text-muted">({{ site.lat }}, {{ site.lng }})</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+            {% break %}
+          {% endif %}
+        {% endfor %}
         
         {% for field in schema.dataset_fields %}
           {% if field.field_name == "license_id" and (pkg_dict.license_url or pkg_dict.license_id) %}
